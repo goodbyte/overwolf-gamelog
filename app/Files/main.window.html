@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Gamelog</title>
+  <link rel="stylesheet" href="css/base.css">
+  <style>
+    .loading {
+      background-image: url(images/loading.svg);
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: 100px;
+    }
+  </style>
+</head>
+<body>
+  <div id="app" class="column grow">
+    <header id="header" class="justify-end">
+      <a id="discord" class="icon" href="https://discord.gg/HpphBzR" target="_blank">
+        <svg><use xlink:href="images/icons.svg#discord"/></svg>
+      </a>
+      <a id="support" class="icon" href="http://support.overwolf.com/" target="_blank">
+        <svg><use xlink:href="images/icons.svg#support"/></svg>
+      </a>
+      <button id="window-minimize" class="icon">
+        <svg><use xlink:href="images/icons.svg#minimize"/></svg>
+      </button>
+      <button id="window-close" class="icon">
+        <svg><use xlink:href="images/icons.svg#close"/></svg>
+      </button>
+    </header>
+    <div id="content" class="column grow loading">
+      <iframe id="iframe" class="hide grow"></iframe>
+      <div id="maintenance" class="hide column grow center-content">
+        <div class="column items-center" style="padding: 20px">
+          <img src="images/disconnected.png">
+          <h5 style="margin-bottom: 4px">CURRENTLY UNAVAILABLE</h5>
+          <p>Your internet connection is down or the server is under maintenance.</p>
+        </div>
+      </div>
+    </div>
+    <div id="window-resize">
+      <svg><use xlink:href="images/icons.svg#resize"/></svg>
+    </div>
+  </div>
+
+  <script data-main="scripts/main" src="scripts/vendor/require.js"></script>
+</body>
+</html>

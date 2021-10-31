@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Gamelog - Gallery</title>
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="scripts/vendor/video-js/video-js.css">
+  <style>
+    #content {
+      padding: 20px;
+    }
+    .thumbnail {
+      position: relative;
+      overflow: hidden;
+      width: 250px;
+      height: 141px;
+    }
+    .thumbnail img {
+      filter: grayscale(1);
+      transition: .5s;
+    }
+    .thumbnail img.active {
+      filter: none;
+    }
+    .thumbnail img:hover {
+      filter: none;
+      transform: scale(1.1);
+      transition: .2s;
+    }
+    .thumbnail-icon {
+      position: absolute;
+      right: 0;
+      margin: 5px;
+      padding: 5px;
+      background: rgba(0, 0, 0, .5);
+      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+    }
+    .thumbnail-icon.uploading {
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 50px;
+      height: 50px;
+    }
+    .thumbnail-info {
+      position: absolute;
+      bottom: 0;
+      padding: 5px;
+      width: 100%;
+      background: rgba(0, 0, 0, .5);
+    }
+    [v-cloak] {
+      display: none;
+    }
+    .video-js .vjs-big-play-button {
+      background: transparent;
+    }
+    .video-js .vjs-big-play-button:focus, .video-js:hover .vjs-big-play-button {
+      background: transparent;
+    }
+    .video-js .vjs-control-bar {
+      background: #101010;
+    }
+    .video-js .vjs-load-progress div {
+      background: #000;
+    }
+  </style>
+</head>
+<body>
+  <div id="app" class="column grow">
+    <header id="header" class="justify-end">
+      <button id="window-minimize" class="icon">
+        <svg><use xlink:href="images/icons.svg#minimize"></svg>
+      </button>
+      <button id="window-close" class="icon">
+        <svg><use xlink:href="images/icons.svg#close"></svg>
+      </button>
+    </header>
+    <div id="content" class="column grow" v-cloak>
+      <div class="column spaced grow" v-if="videos.length">
+        <h5>GALLERY</h5>
+        <div class="spaced no-shrink" style="overflow-x: scroll; padding-bottom: 10px">
+          <div class="thumbnail column no-shrink" v-for="video in videos" :key='video.start_time' @click="selected = video">
+            <img :src="video.thumbnail_url" :class="{active: (video == selected ? true : false)}">
+            <svg class="thumbnail-icon" v-if="video.eventName === 'kill'">
+              <use xlink:href="images/icons.svg#kill">
+            </svg>
+            <svg class="thumbnail-icon" v-if="video.eventName === 'death'">
+              <use xlink:href="images/icons.svg#death">
+            </svg>
+            <svg class="thumbnail-icon uploading" v-if="video.upload">
+              <use xlink:href="images/icons.svg#upload">
+            </svg>
+            <div class="thumbnail-info">
+              {{ video.start_time | fromNow }}
+            </div>
+          </div>
+        </div>
+        <div class="column spaced grow" v-if="selected">
+          <v-video :src="selected.url"></v-video>
+          <div class="no-shrink" v-if="selected.upload">
+            <progress max="100" :value="selected.upload.progress"></progress>
+            <button class="icon" v-if="selected.upload.state === 'paused'" @click="selected.upload.resume()">
+              <svg><use xlink:href="images/icons.svg#play"/></svg>
+            </button>
+            <button class="icon" v-if="selected.upload.state === 'running'" @click="selected.upload.pause()">
+              <svg><use xlink:href="images/icons.svg#pause"/></svg>
+            </button>
+            <button class="icon" @click="selected.upload.cancel()">
+              <svg><use xlink:href="images/icons.svg#stop"/></svg>
+            </button>
+          </div>
+          <div class="column no-shrink" v-else>
+            <div class="column spaced" v-if="selected.downloadURL">
+              <input type="text" placeholder="Write something about the video" spellcheck="false" v-model="statusMessage">
+              <button class="btn" :disabled="!authenticated" @click="share">Share</button>
+            </div>
+            <button class="btn" v-else :disabled="!authenticated" @click="upload">Upload</button>
+          </div>
+        </div>
+      </div>
+      <div class="column center-content grow" v-else>
+        <div class="column items-center">
+          <img src="images/video-slash.png" style="margin-bottom: 10px">
+          <h3>Empty Gallery</h3>
+        </div>
+      </div>
+    </div>
+    <div id="window-resize">
+      <svg><use xlink:href="images/icons.svg#resize"/></svg>
+    </div>
+  </div>
+  <script data-main="scripts/gallery" src="scripts/vendor/require.js"></script>
+</body>
+</html>

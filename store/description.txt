@@ -1,0 +1,5 @@
+<p>If you had the chance to try Battlelog in the past, then Gamelog will be a familiar concept, in other words, is a social/gaming platform in which you can keep record of you and your friends stats, share your thoughts, keep yourself updated with the latest news, and much more...</p>
+<p>Supported Games</p>
+<ul>
+  <li>PLAYERUNKNOWN'S BATTLEGROUNDS</li>
+</ul>

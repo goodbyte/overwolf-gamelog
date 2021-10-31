@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Gamelog - Notification</title>
+  <link rel="stylesheet" href="css/base.css">
+  <style>
+    hr {
+      border-bottom: 1px solid #4f545c;
+    }
+    .notification-body {
+      padding: 20px;
+      background: #303338;
+      color: #eee;
+      border-radius: 10px;
+      margin-right: 10px;
+    }
+    .key {
+      margin: 0 5px;
+      padding: 2px 5px;
+      background: #A072DA;
+      border-radius: 2px;
+      border-bottom: 2px solid #7836c9;
+    }
+  </style>
+</head>
+<body>
+  <div id="vue" class="column">
+    <notifications group="capture" position="top left">
+      <template slot="body" slot-scope="props">
+        <div class="notification-body column spaced">
+          <div class="items-center spaced">
+            <img src="images/logo.png">
+            <div class="column spaced">
+              <h5>{{props.item.title}}</h5>
+              <div v-if="props.item.text" v-html="props.item.text"></div>
+            </div>
+          </div>
+          <hr>
+          <div class="items-center" v-if="hotkey">
+            <span>Press </span>
+            <template v-for="(key, index) in hotkey">
+              <span class="key" >{{ key }}</span>
+              <span v-if="index < hotkey.length - 1">+</span>
+            </template>
+            <span> to turn off</span>
+          </div>
+        </div>
+      </template>
+    </notifications>
+  </div>
+  <script data-main="scripts/notification" src="scripts/vendor/require.js"></script>
+</body>
+</html>

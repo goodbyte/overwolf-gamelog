@@ -1,0 +1,238 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: none;
+  font-size: 100%;
+  font: inherit;
+  color: inherit;
+  vertical-align: baseline;
+  box-sizing: border-box;
+  user-select: none;
+}
+*:disabled,
+*[disabled] {
+  opacity: 0.5;
+  pointer-events: none;
+}
+html, body {
+  height: 100%;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  overflow: hidden;
+  font-family: Roboto, sans-serif;
+  font-size: 12px;
+  line-height: 1;
+}
+header {
+  display: flex;
+  background: #212121;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+th, td {
+  padding-bottom: 2px;
+}
+th:not(:first-child), td:not(:first-child) {
+  padding-left: 2px;
+}
+ul {
+  list-style: none;
+}
+h1, h2, h3, h4, h5, h6, th {
+  font-weight: bold;
+}
+h1 {
+  font-size: 2.5em;
+}
+h2 {
+  font-size: 2em;
+}
+h3 {
+  font-size: 1.75em;
+}
+h4 {
+  font-size: 1.5em;
+}
+h5 {
+  font-size: 1.25em;
+}
+h6 {
+  font-size: 1em;
+}
+video {
+  width: 100%;
+}
+svg {
+  width: 100%;
+  height: 100%;
+}
+div {
+  display: flex;
+}
+div.column {
+  flex-direction: column;
+}
+div.spaced:not(.column) > *:not(:last-child) {
+  margin-right: 10px;
+}
+div.spaced.column > *:not(:last-child) {
+  margin-bottom: 10px;
+}
+progress {
+  width: 100%;
+}
+input[type="text"] {
+  background: #101010;
+  padding: 10px;
+}
+#app {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(45deg, #131313, #303030);
+  color: #fff;
+  border: 1px solid #444;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.75);
+}
+#window-close:hover {
+  background: #c21913;
+}
+#discord:hover {
+  background: #7289da;
+}
+#window-resize {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 30px;
+  height: 30px;
+  cursor: se-resize;
+  color: rgba(255, 255, 255, .5);
+}
+.btn {
+  background: transparent;
+  border: 1px solid #fff;
+  padding: 10px;
+  font-size: 14px;
+  border-radius: 2px;
+  height: 36px;
+  text-transform: uppercase;
+  transition: .3s;
+}
+.btn:hover {
+  background: #202020;
+}
+.icon {
+  width: 30px;
+  height: 30px;
+  background: transparent;
+  color: #aaa;
+  cursor: default;
+}
+.icon:hover {
+  background: #272727;
+  color: #fff;
+}
+.hide {
+  display: none !important;
+}
+.center-content {
+  justify-content: center;
+  align-content: center;
+  text-align: center;
+}
+.justify-start {
+  justify-content: flex-start;
+}
+.justify-end {
+  justify-content: flex-end;
+}
+.justify-center {
+  justify-content: center;
+}
+.justify-between {
+  justify-content: space-between;
+}
+.justify-around {
+  justify-content: space-around;
+}
+.items-start {
+  align-items: flex-start;
+}
+.items-end {
+  align-items: flex-end;
+}
+.items-center {
+  align-items: center;
+}
+.items-stretch {
+  align-items: stretch;
+}
+.items-baseline {
+  align-items: baseline;
+}
+.content-start {
+  align-content: flex-start;
+}
+.content-end {
+  align-content: flex-end;
+}
+.content-center {
+  align-content: center;
+}
+.content-between {
+  align-content: space-between;
+}
+.content-around {
+  align-content: space-around;
+}
+.wrap {
+  flex-wrap: wrap;
+}
+.grow {
+  flex-grow: 1;
+}
+.shrink {
+  flex-shrink: 1;
+}
+.no-grow {
+  flex-grow: 0;
+}
+.no-shrink {
+  flex-shrink: 0;
+}
+
+
+progress[value] {
+  -webkit-appearance: none;
+  height: 30px;
+}
+progress[value]::-webkit-progress-bar {
+  background: #131313;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #111;
+}
+::-webkit-scrollbar-corner {
+  background: #000;
+}
+::-webkit-scrollbar-thumb {
+  width: 10px;
+  height: 10px;
+  background: #aaa;
+  box-shadow: inset 0 0 2px #000;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #fff;
+}
